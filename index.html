@@ -366,8 +366,9 @@
       </div>
       <h1>Når passer det for deg?</h1>
       <p class="lead">Velg en dag som funker for deg 💕</p>
-      <input type="date" id="date-input" class="date-input" onchange="chooseDate(this.value)">
+      <input type="date" id="date-input" class="date-input">
       <script>document.getElementById('date-input').min = new Date().toISOString().split('T')[0];</script>
+      <button class="yes-btn" style="margin-top:20px;" onclick="confirmDate()">Fortsett</button>
     </div>
 
     <!-- STEP 4: THE ASK -->
@@ -426,18 +427,20 @@
     document.getElementById('step-3').classList.add('active');
   }
 
-  function chooseDate(value){
-    if(!value) return;
-    chosenDate = value;
-    const d = new Date(value + 'T00:00:00');
-    const formatted = d.toLocaleDateString('nb-NO', { weekday:'long', day:'numeric', month:'long' });
-    document.getElementById('summary-text').textContent =
-      `${foodEmoji} ${food}  ·  ${activityEmoji} ${capitalize(activity)}  ·  📅 ${formatted}`;
-    setTimeout(() => {
-      document.getElementById('step-3').classList.remove('active');
-      document.getElementById('step-4').classList.add('active');
-    }, 400);
+function confirmDate(){
+  const value = document.getElementById('date-input').value;
+  if(!value){
+    alert('Velg en dato først 💕');
+    return;
   }
+  chosenDate = value;
+  const d = new Date(value + 'T00:00:00');
+  const formatted = d.toLocaleDateString('nb-NO', { weekday:'long', day:'numeric', month:'long' });
+  document.getElementById('summary-text').textContent =
+    `${foodEmoji} ${food}  ·  ${activityEmoji} ${capitalize(activity)}  ·  📅 ${formatted}`;
+  document.getElementById('step-3').classList.remove('active');
+  document.getElementById('step-4').classList.add('active');
+}
 
   function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
 
