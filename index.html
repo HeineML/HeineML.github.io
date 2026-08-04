@@ -201,6 +201,7 @@
     padding:16px 18px;
     cursor:pointer;
     width:100%;
+    box-sizing:border-box;
     text-align:center;
     outline:none;
     transition:all 0.25s ease;
@@ -368,7 +369,7 @@
       <p class="lead">Velg en dag som funker for deg 💕</p>
       <input type="date" id="date-input" class="date-input">
       <script>document.getElementById('date-input').min = new Date().toISOString().split('T')[0];</script>
-      <button class="yes-btn" style="margin-top:20px;" onclick="confirmDate()">Fortsett</button>
+      <button class="yes-btn" style="margin-top:20px; width:100%; box-sizing:border-box;" onclick="confirmDate()">Fortsett</button>
     </div>
 
     <!-- STEP 4: THE ASK -->
